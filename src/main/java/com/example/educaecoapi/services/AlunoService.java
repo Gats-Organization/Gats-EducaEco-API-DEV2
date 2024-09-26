@@ -36,4 +36,13 @@ public class AlunoService {
     public List<Aluno> buscarPorNome(String nome) {
         return alunoRepository.findByNomeLikeIgnoreCase(nome);
     }
+
+    public  Aluno buscarAlunoPorEmail(String email) {
+        Optional<Aluno> optionalAluno = Optional.ofNullable(alunoRepository.findByEmail(email));
+        if (optionalAluno.isPresent()) {
+            return optionalAluno.get();
+        } else {
+            return null;
+        }
+    }
 }

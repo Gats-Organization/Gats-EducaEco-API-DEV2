@@ -10,5 +10,6 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long> {
     // Métodos customizados podem ser adicionados aqui se necessário
     List<Aluno> findByTurma_Id(Long idTurma);
     List<Aluno> findByNomeLikeIgnoreCase(String nome);
+    Aluno findByEmail(String email);
 }
 

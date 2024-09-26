@@ -56,5 +56,16 @@ public class AlunoController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    //Endpoint para buscar alunos por email
+    @GetMapping("/email/{email}")
+    public ResponseEntity<List<Aluno>> getAlunosByEmail(@PathVariable String email) {
+        Aluno aluno = alunoService.buscarAlunoPorEmail(email);
+        if (aluno != null) {
+            return ResponseEntity.ok(List.of(aluno));
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
 
