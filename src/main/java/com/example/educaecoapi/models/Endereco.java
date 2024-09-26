@@ -1,6 +1,10 @@
 package com.example.educaecoapi.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Endereco {
@@ -8,20 +12,30 @@ public class Endereco {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
+    @Min(1)
     @Column(length = 10)
-    private String cep;
+    private int numero;
 
-    @Column(length = 2)
-    private String estado;
+    @NotBlank
+    @Size(max = 80)
+    private String rua;
 
-    @Column(length = 50)
-    private String cidade;
-
-    @Column(length = 50)
+    @NotBlank
+    @Size(max = 50)
     private String bairro;
 
-    @Column(length = 10)
-    private String numero;
+    @NotBlank
+    @Size(max = 50)
+    private String cidade;
+
+    @NotBlank
+    @Size(max = 30)
+    private String estado;  // Corrigido para 30 caracteres, conforme a tabela
+
+    @NotBlank
+    @Size(max = 10)
+    private String cep;
 
     // Getters and Setters
 
@@ -45,7 +59,7 @@ public class Endereco {
         return bairro;
     }
 
-    public String getNumero() {
+    public int getNumero() {
         return numero;
     }
 }

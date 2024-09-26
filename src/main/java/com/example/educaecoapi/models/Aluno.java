@@ -24,7 +24,7 @@ public class Aluno {
     private Integer xp;
 
     @ManyToOne
-    @JoinColumn(name = "idturma", referencedColumnName = "id")
+    @JoinColumn(name = "id_turma", referencedColumnName = "id")
     private Turma turma;
 
     // Getters and Setters

@@ -18,7 +18,7 @@ public class Escola {
     private String telefone;
 
     @ManyToOne
-    @JoinColumn(name = "idendereco", referencedColumnName = "id")
+    @JoinColumn(name = "id_endereco", referencedColumnName = "id")
     private Endereco endereco;
 
     // Getters and Setters
