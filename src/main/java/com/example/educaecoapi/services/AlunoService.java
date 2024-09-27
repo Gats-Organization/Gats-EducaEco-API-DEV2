@@ -45,4 +45,30 @@ public class AlunoService {
             return null;
         }
     }
+
+    public boolean atualizarSenhaPorEmail(String email, String novaSenha) {
+        Optional<Aluno> alunoOptional = Optional.ofNullable(alunoRepository.findByEmail(email));
+
+        if (alunoOptional.isPresent()) {
+            Aluno aluno = alunoOptional.get();
+            aluno.setSenha(novaSenha);
+            alunoRepository.save(aluno);
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean atualizarXpPorEmail(String email, int somaXp) {
+        Optional<Aluno> alunoOptional = Optional.ofNullable(alunoRepository.findByEmail(email));
+
+        if (alunoOptional.isPresent()) {
+            Aluno aluno = alunoOptional.get();
+            aluno.setXp(aluno.getXp() + somaXp);
+            alunoRepository.save(aluno);
+            return true;
+        }
+
+        return false;
+    }
 }

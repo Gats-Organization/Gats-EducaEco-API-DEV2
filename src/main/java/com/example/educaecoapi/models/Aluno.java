@@ -56,5 +56,13 @@ public class Aluno {
     public Turma getTurma() {
         return turma;
     }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public void setXp(Integer xp) {
+        this.xp = xp;
+    }
 }
 
