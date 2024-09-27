@@ -74,7 +74,7 @@ public class AlunoController {
         if (atualizado) {
             return ResponseEntity.ok("Senha atualizada com sucesso.");
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Aluno não encontrado!");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Aluno não encontrado.");
         }
     }
 
@@ -86,7 +86,7 @@ public class AlunoController {
         if (atualizado) {
             return ResponseEntity.ok("XP atualizado com sucesso.");
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Aluno não encontrado!");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Aluno não encontrado.");
         }
     }
 
