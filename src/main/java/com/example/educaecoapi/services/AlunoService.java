@@ -2,6 +2,7 @@ package com.example.educaecoapi.services;
 
 import com.example.educaecoapi.models.Aluno;
 import com.example.educaecoapi.repository.AlunoRepository;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,7 +31,7 @@ public class AlunoService {
     }
 
     public List<Aluno> buscarPorTurma(Long idTurma) {
-        return alunoRepository.findByTurma_Id(idTurma);
+        return alunoRepository.findByTurma_Id(idTurma, Sort.by(Sort.Order.desc("xp")));
     }
 
     public List<Aluno> buscarPorNome(String nome) {
