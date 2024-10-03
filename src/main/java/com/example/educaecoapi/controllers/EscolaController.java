@@ -2,6 +2,7 @@ package com.example.educaecoapi.controllers;
 
 import com.example.educaecoapi.models.Escola;
 import com.example.educaecoapi.repository.EscolaRepository;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +21,7 @@ public class EscolaController {
 
     // Endpoint para buscar escola por ID
     @GetMapping("/{id}")
+    @Operation(summary = "Busca escola por ID", description = "Retorna uma escola que correspondem ao ID informado.")
     public ResponseEntity<Escola> getEscolaById(@PathVariable Long id) {
         Optional<Escola> escola = escolaRepository.findById(id);
         if (escola.isPresent()) {
