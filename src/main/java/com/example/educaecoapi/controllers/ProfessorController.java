@@ -1,7 +1,7 @@
 package com.example.educaecoapi.controllers;
 
 import com.example.educaecoapi.models.Professor;
-import com.example.educaecoapi.repository.ProfessorRepository;
+import com.example.educaecoapi.services.ProfessorService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,18 +17,22 @@ import java.util.Optional;
 public class ProfessorController {
 
     @Autowired
-    private ProfessorRepository professorRepository;
+    private ProfessorService professorService;
 
-    // Endpoint para buscar professor por ID
     @GetMapping("/{id}")
-    @Operation(summary = "Busca professor por ID", description = "Retorna um professor que correspondem ao ID informado.")
-    public ResponseEntity<Professor> getProfessorById(@PathVariable Long id) {
-        Optional<Professor> professor = professorRepository.findById(id);
-        if (professor.isPresent()) {
-            return ResponseEntity.ok(professor.get());
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    @Operation(summary = "Busca professor por ID", description = "Retorna um professor que corresponde ao ID informado.")
+    public ResponseEntity<Professor> buscarProfessorPorId(@PathVariable Long id) {
+        return professorService.buscarPorId(id)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/email/{email}/senha/{senha}")
+    @Operation(summary = "Busca professor por email e senha", description = "Retorna um professor que corresponde ao email e senha informados.")
+    public ResponseEntity<Professor> buscarPorEmailSenha(@PathVariable String email, @PathVariable String senha) {
+        return professorService.buscarPorEmailAndSenha(email, senha)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 }
 
