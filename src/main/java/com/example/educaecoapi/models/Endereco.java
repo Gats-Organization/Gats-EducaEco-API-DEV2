@@ -1,5 +1,6 @@
 package com.example.educaecoapi.models;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -10,31 +11,38 @@ import jakarta.validation.constraints.Size;
 public class Endereco {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(description = "ID do Endereço", example = "1")
     private Long id;
 
     @NotNull
     @Min(1)
     @Column(length = 10)
+    @Schema(description = "CEP do Endereço", example = "12345678")
     private String numero;
 
     @NotBlank
     @Size(max = 80)
+    @Schema(description = "Rua do Endereço", example = "Avenida Paulista")
     private String rua;
 
     @NotBlank
     @Size(max = 50)
+    @Schema(description = "Bairro do Endereço", example = "Centro")
     private String bairro;
 
     @NotBlank
     @Size(max = 50)
+    @Schema(description = "Cidade do Endereço", example = "São Paulo")
     private String cidade;
 
     @NotBlank
     @Size(max = 30)
+    @Schema(description = "Estado do Endereço", example = "SP")
     private String estado;  // Corrigido para 30 caracteres, conforme a tabela
 
     @NotBlank
     @Size(max = 10)
+    @Schema(description = "CEP do Endereço", example = "12345678")
     private String cep;
 
     // Getters and Setters
