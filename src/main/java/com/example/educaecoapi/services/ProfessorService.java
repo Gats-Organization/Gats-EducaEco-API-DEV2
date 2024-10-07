@@ -23,7 +23,7 @@ public class ProfessorService {
         return professorRepository.findById(id);
     }
 
-    public Optional<Professor> buscarPorEmailAndSenha(String email, String senha) {
-        return Optional.ofNullable(professorRepository.findByEmailAndSenha(email, senha));
+    public Optional<Professor> buscarPorEmail(String email) {
+        return Optional.ofNullable(professorRepository.findByEmail(email));
     }
 }
