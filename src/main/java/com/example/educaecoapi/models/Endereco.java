@@ -15,7 +15,7 @@ public class Endereco {
     @NotNull
     @Min(1)
     @Column(length = 10)
-    private int numero;
+    private String numero;
 
     @NotBlank
     @Size(max = 80)
@@ -59,7 +59,7 @@ public class Endereco {
         return bairro;
     }
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 }

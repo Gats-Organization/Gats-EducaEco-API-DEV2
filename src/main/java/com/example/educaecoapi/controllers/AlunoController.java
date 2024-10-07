@@ -29,7 +29,7 @@ public class AlunoController {
     // Endpoint para buscar aluno por ID
     @GetMapping("/{id}")
     @Operation(summary = "Busca alunos por ID", description = "Retorna um aluno que correspondem ao ID informado.")
-    public ResponseEntity<Aluno> getAlunoById(@PathVariable Long id) {
+    public ResponseEntity<Aluno> buscarAlunoPorId(@PathVariable Long id) {
         Optional<Aluno> optionalAluno = Optional.ofNullable(alunoService.buscarPorId(id));
         if (optionalAluno.isPresent()) {
             return ResponseEntity.ok(optionalAluno.get());
@@ -41,7 +41,7 @@ public class AlunoController {
     // Endpoint para buscar todos os alunos de uma determinada turma
     @GetMapping("/turma/{idTurma}")
     @Operation(summary = "Busca alunos por turma", description = "Retorna uma lista de alunos que correspondem a turma informada.")
-    public ResponseEntity<List<Aluno>> getAlunosByTurma(@PathVariable Long idTurma) {
+    public ResponseEntity<List<Aluno>> buscarAlunosPorTurma(@PathVariable Long idTurma) {
         List<Aluno> alunos = alunoService.buscarPorTurma(idTurma);
         if (!alunos.isEmpty()) {
             return ResponseEntity.ok(alunos);
@@ -53,7 +53,7 @@ public class AlunoController {
     // Endpoint para buscar alunos por nome
     @GetMapping("/nome/{nome}")
     @Operation(summary = "Busca alunos por nome", description = "Retorna uma lista de alunos que correspondem ao nome informado.")
-    public ResponseEntity<List<Aluno>> getAlunosByNome(@PathVariable String nome) {
+    public ResponseEntity<List<Aluno>> buscarAlunosPorNome(@PathVariable String nome) {
         List<Aluno> alunos = alunoService.buscarPorNome(nome);
         if (!alunos.isEmpty()) {
             return ResponseEntity.ok(alunos);
@@ -65,7 +65,7 @@ public class AlunoController {
     //Endpoint para buscar alunos por email
     @GetMapping("/email/{email}")
     @Operation(summary = "Busca alunos por email", description = "Retorna uma lista de alunos que correspondem ao email informado.")
-    public ResponseEntity<List<Aluno>> getAlunosByEmail(@PathVariable String email) {
+    public ResponseEntity<List<Aluno>> buscarAlunosPorEmail(@PathVariable String email) {
         Aluno aluno = alunoService.buscarAlunoPorEmail(email);
         if (aluno != null) {
             return ResponseEntity.ok(List.of(aluno));
