@@ -20,7 +20,6 @@ import java.util.Optional;
 
 
 @RestController
-@CrossOrigin(origins = "*")
 @RequestMapping("/api/alunos")
 public class AlunoController {
 
