@@ -97,18 +97,18 @@ public class AlunoController {
 
     //Endpoint para buscar alunos por email
     @GetMapping("/email/{email}")
-    @Operation(summary = "Busca alunos por email", description = "Retorna uma lista de alunos que correspondem ao email informado.")
+    @Operation(summary = "Busca aluno por email", description = "Retorna um aluno que corresponde ao email informado.")
     @ApiResponses( value = {
-            @ApiResponse (responseCode = "200", description = "Lista de alunos retornada com sucesso",
+            @ApiResponse (responseCode = "200", description = "Aluno encontrado com sucesso",
                     content = @Content(mediaType = "application/json", schema = @Schema(implementation = Aluno.class))),
             @ApiResponse (responseCode = "404", description = "Aluno não encontrado",
                     content = @Content(mediaType = "application/json", schema = @Schema(implementation = Exception.class)))
     })
-    @Parameter(name = "email", description = "Email do aluno", required = true, example = "pJmRd@example.com")
-    public ResponseEntity<List<Aluno>> buscarAlunosPorEmail(@PathVariable String email) {
-        Aluno aluno = alunoService.buscarAlunoPorEmail(email);
-        if (aluno != null) {
-            return ResponseEntity.ok(List.of(aluno));
+    @Parameter(name = "email", description = "Email do aluno", required = true, example = "aluno@gats.com")
+    public ResponseEntity<Aluno> buscarAlunosPorEmail(@PathVariable String email) {
+        Optional<Aluno> optionalAluno = Optional.ofNullable(alunoService.buscarAlunoPorEmail(email));
+        if (optionalAluno.isPresent()) {
+            return ResponseEntity.ok(optionalAluno.get());
         } else {
             return ResponseEntity.notFound().build();
         }
