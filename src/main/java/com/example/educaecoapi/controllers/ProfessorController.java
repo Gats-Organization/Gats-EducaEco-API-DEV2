@@ -50,5 +50,22 @@ public class ProfessorController {
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
+
+    @GetMapping("/email/{email}/senha/{senha}")
+    @Operation(summary = "Busca professor por email e senha", description = "Retorna um professor que corresponde ao email e senha informados.")
+    @ApiResponses( value = {
+            @ApiResponse(responseCode = "200", description = "Professor encontrado com sucesso",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = Professor.class))),
+            @ApiResponse (responseCode = "404", description = "Professor não encontrado",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = Exception.class)))
+    })
+    @Parameter(name = "email", description = "Email do professor", required = true, example = "nome_professor@gats.com")
+    public ResponseEntity<Professor> buscarPorEmailESenha(@PathVariable String email, @PathVariable String senha) {
+        return professorService.buscarPorEmailESenha(email, senha)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+
 }
 
