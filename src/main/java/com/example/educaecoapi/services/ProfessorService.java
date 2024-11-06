@@ -26,4 +26,8 @@ public class ProfessorService {
     public Optional<Professor> buscarPorEmail(String email) {
         return Optional.ofNullable(professorRepository.findByEmail(email));
     }
+
+    public Optional<Professor> buscarPorEmailESenha(String email, String senha) {
+        return Optional.ofNullable(professorRepository.findByEmailAndSenha(email, senha));
+    }
 }
