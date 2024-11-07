@@ -11,7 +11,10 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**") // Mapeia todas as rotas
-                .allowedOrigins("http://127.0.0.1:5500") // Domínio permitido
+                .allowedOrigins(
+                        "http://127.0.0.1:5500", // Para desenvolvimento local
+                        "https://gats-organization.github.io" // Domínio do GitHub Pages
+                )
                 .allowedMethods("GET", "POST", "PUT", "DELETE") // Métodos permitidos
                 .allowCredentials(true);
     }
